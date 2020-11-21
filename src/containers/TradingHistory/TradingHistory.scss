@@ -1,0 +1,15 @@
+.trading-history {
+  width: 100%;
+  height: 90%;
+  grid-column-start: 4;
+  grid-column-end: 5;
+  grid-row-start: 2;
+  grid-row-end: 5;
+  .ui.card {
+    height: 90vh;
+    width: 100%;
+  }
+  .ui.card > .content, {
+    flex-grow: 0;
+  }
+}
