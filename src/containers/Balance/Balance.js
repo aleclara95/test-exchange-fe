@@ -17,9 +17,8 @@ class Balance extends React.Component {
 
   componentDidUpdate(prevProps) {
     if (
-      (this.props.currentCurrencyPair &&
-        prevProps.currentCurrencyPair != this.props.currentCurrencyPair) ||
-      (this.props.orderCreate.success && prevProps != this.props)
+      this.props.currentCurrencyPair &&
+      prevProps.currentCurrencyPair !== this.props.currentCurrencyPair
     ) {
       let token, username;
       if (this.props.session.user) {
@@ -40,6 +39,20 @@ class Balance extends React.Component {
   }
 
   render() {
+    let originDecimals = 0;
+    let destinationDecimals = 0;
+
+    if (this.props.balances.userBalances) {
+      const { userBalances } = this.props.balances;
+
+      if (userBalances[0].currency_type === 'fiat') originDecimals = 2;
+      else if (userBalances[0].currency_type === 'crypto') originDecimals = 5;
+
+      if (userBalances[1].currency_type === 'fiat') destinationDecimals = 2;
+      else if (userBalances[1].currency_type === 'crypto')
+        destinationDecimals = 5;
+    }
+
     return (
       <div className='balance'>
         <Card>
@@ -64,7 +77,9 @@ class Balance extends React.Component {
                     </Table.Cell>
                     <Table.Cell>
                       {this.props.balances.userBalances
-                        ? this.props.balances.userBalances[0].balance
+                        ? parseFloat(
+                            this.props.balances.userBalances[0].balance
+                          ).toFixed(originDecimals)
                         : '-'}
                     </Table.Cell>
                   </Table.Row>
@@ -76,7 +91,9 @@ class Balance extends React.Component {
                     </Table.Cell>
                     <Table.Cell>
                       {this.props.balances.userBalances
-                        ? this.props.balances.userBalances[1].balance
+                        ? parseFloat(
+                            this.props.balances.userBalances[1].balance
+                          ).toFixed(destinationDecimals)
                         : '-'}
                     </Table.Cell>
                   </Table.Row>

@@ -7,6 +7,7 @@ import { balancesReducer } from '../containers/Balance/redux/reducers';
 import { currencyPairReducer } from '../containers/TopBar/CurrencyPairSelect/redux/reducers';
 import { orderCreateReducer } from '../containers/OrderFormContainer/OrderForm/redux/reducers';
 import { getOrderBookReducer } from '../containers/OrderBook/redux/reducers';
+import { getTradingHistoryReducer } from '../containers/TradingHistory/redux/reducers';
 
 const persistConfig = {
   key: 'session',
@@ -19,7 +20,8 @@ const rootReducer = combineReducers({
   balances: balancesReducer,
   currencyPair: currencyPairReducer,
   orderCreate: orderCreateReducer,
-  orderBook: getOrderBookReducer
+  orderBook: getOrderBookReducer,
+  tradingHistory: getTradingHistoryReducer
 });
 
 export default persistReducer(persistConfig, rootReducer);
