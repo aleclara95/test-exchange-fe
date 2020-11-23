@@ -1,26 +1,22 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
 
-import Layout from './components/Layout/Layout';
-import TopBar from './containers/TopBar/TopBar';
-import Balance from './containers/Balance/Balance';
-import OrderFormContainer from './containers/OrderFormContainer/OrderFormContainer';
-import OrderBook from './containers/OrderBook/OrderBook';
-import MainScreen from './containers/MainScreen/MainScreen';
-import TradingHistory from './containers/TradingHistory/TradingHistory';
-import BottomTabs from './containers/BottomTabs/BottomTabs';
+import { Switch, Route, BrowserRouter, Redirect } from 'react-router-dom';
+
+import LoginForm from './components/LoginForm/LoginForm';
+import Main from './components/Main/Main';
 
 function App() {
   return (
-    <Layout>
-      <TopBar/>
-      <Balance/>
-      <OrderFormContainer/>
-      <OrderBook/>
-      <MainScreen/>
-      <TradingHistory/>
-      <BottomTabs/>
-    </Layout>
+    <React.Fragment>
+      <BrowserRouter>
+        <Switch>
+          <Route path={'/'} component={Main} exact />
+          <Route path={'/login'} component={LoginForm} exact />
+          <Redirect to={'/'} />
+        </Switch>
+      </BrowserRouter>
+    </React.Fragment>
   );
 }
 

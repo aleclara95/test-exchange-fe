@@ -1,16 +1,10 @@
 import React from 'react';
 
-import TopBar from '../../containers/TopBar/TopBar'
-
 import './Layout.scss';
 
-// <div>MainScreen, TradeHistory</div>
-
-const layout = (props) => (
+const layout = props => (
   <React.Fragment>
-    <main class="layout">
-      { props.children }
-    </main>
+    <main className='layout'>{props.children}</main>
   </React.Fragment>
 );
 
