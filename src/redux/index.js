@@ -7,6 +7,7 @@ import { balancesReducer } from '../containers/Balance/redux/reducers';
 import { currencyPairReducer } from '../containers/TopBar/CurrencyPairSelect/redux/reducers';
 import { orderCreateReducer } from '../containers/OrderFormContainer/OrderForm/redux/reducers';
 import { getOrderBookReducer } from '../containers/OrderBook/redux/reducers';
+import { getActiveOrdersReducer } from '../containers/BottomTabs/ActiveOrders/redux/reducers';
 import { getTradingHistoryReducer } from '../containers/TradingHistory/redux/reducers';
 
 const persistConfig = {
@@ -21,6 +22,7 @@ const rootReducer = combineReducers({
   currencyPair: currencyPairReducer,
   orderCreate: orderCreateReducer,
   orderBook: getOrderBookReducer,
+  activeOrders: getActiveOrdersReducer,
   tradingHistory: getTradingHistoryReducer
 });
 

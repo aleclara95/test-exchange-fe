@@ -1,6 +1,7 @@
 import { createOrder } from '../../../../API/endpoints';
 import { balancesActionCreator } from '../../../Balance/redux/actions';
 import { getOrderBookActionCreator } from '../../../OrderBook/redux/actions';
+import { getActiveOrdersActionCreator } from '../../../BottomTabs/ActiveOrders/redux/actions';
 
 import { selectCurrentCurrencyPair } from '../../../TopBar/CurrencyPairSelect/redux/selectors';
 import { selectUser } from '../../../../redux/session/selectors';
@@ -60,8 +61,18 @@ export const orderCreateActionCreator = dispatch => ({
         user: username
       };
       getOrderBookActionCreator(dispatch).getOrderBook(token, orderBookData);
+
+      // Get active orders
+      const activeOrdersData = {
+        origin: currentOrigin,
+        destination: currentDestination,
+        user: username
+      };
+      getActiveOrdersActionCreator(dispatch).getActiveOrders(
+        token,
+        activeOrdersData
+      );
     } catch (error) {
-      debugger;
       dispatch(
         orderCreateActions.error('Could not create order. Please, try again.')
       );

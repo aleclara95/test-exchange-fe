@@ -38,6 +38,13 @@ const getOrderBook = async (token, data) => {
   return response;
 };
 
+const getActiveOrders = async (token, data) => {
+  const { origin, destination, user } = data;
+  const url = `/order/?origin=${origin}&destination=${destination}&is_active=true&user=${user}&o=-price`;
+  const response = await API.get(url, token);
+  return response;
+};
+
 // Trades
 const getTradingHistory = async token => {
   const url = `/trade/?is_active=true&o=-create_date`;
@@ -51,5 +58,6 @@ export {
   getCurrencyPairs,
   createOrder,
   getOrderBook,
+  getActiveOrders,
   getTradingHistory
 };

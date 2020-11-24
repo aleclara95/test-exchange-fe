@@ -69,10 +69,9 @@ class OrderBook extends React.Component {
   }
 }
 
-const mapStateToProps = ({ orderBook, orderCreate, session }) => {
+const mapStateToProps = ({ orderBook, session }) => {
   return {
     orderBook,
-    orderCreate,
     session
   };
 };
